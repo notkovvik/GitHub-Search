@@ -195,6 +195,47 @@ h1 span{
   background:var(--surface-2);padding:1px 6px;border-radius:5px;font-size:12px;color:var(--text);
 }
 
+/* ---------- ANDROID APP BANNER ---------- */
+.app-banner{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  max-width:680px;margin:0 auto 32px;padding:18px 20px;
+  border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));
+  border-radius:var(--radius);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--soft) 80%,var(--surface)),var(--surface));
+  box-shadow:var(--shadow);
+  text-align:left;
+  animation:fadeUp .5s ease backwards;
+}
+.hero.center .app-banner{margin-left:auto;margin-right:auto}
+.app-banner .app-icon{
+  width:48px;height:48px;flex-shrink:0;border-radius:12px;
+  background:linear-gradient(135deg,#3ddc84,#0f9d58);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;box-shadow:0 6px 16px -6px rgba(15,157,88,.6);
+}
+.app-banner .app-icon svg{width:26px;height:26px}
+.app-banner .app-info{flex:1;min-width:180px}
+.app-banner .app-title{
+  font-weight:750;font-size:16px;letter-spacing:-.01em;margin:0 0 2px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.app-banner .app-title .app-badge{
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:#0f9d58;background:color-mix(in srgb,#3ddc84 18%,transparent);
+  padding:2px 8px;border-radius:999px;
+}
+@media(prefers-color-scheme:dark){
+  .app-banner .app-title .app-badge{color:#7ee2a8}
+}
+.app-banner .app-text{
+  color:var(--muted);font-size:13.5px;line-height:1.5;margin:0;
+}
+.app-banner .app-action{flex-shrink:0}
+.app-banner .app-action .button{
+  min-height:48px;padding:0 20px;font-size:15px;border-radius:12px;
+}
+.app-banner .app-action svg{width:17px;height:17px}
+
 .suggest{
   position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:40;
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
@@ -547,6 +588,11 @@ select{
   .user-search .go{width:100%}
   .profile{padding:24px 0 20px}
   .profile .avatar{width:64px;height:64px}
+  .app-banner{flex-direction:column;text-align:center;padding:20px 16px}
+  .app-banner .app-info{text-align:center}
+  .app-banner .app-title{justify-content:center}
+  .app-banner .app-action{width:100%}
+  .app-banner .app-action .button{width:100%}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
@@ -591,6 +637,27 @@ select{
         <span data-i18n="h1Post">любого пользователя</span>
       </h1>
       <p class="intro" data-i18n="intro">Введите ник, ссылку на репозиторий или поисковый запрос — откроется страница с авторами и репозиториями.</p>
+
+      <div class="app-banner" id="app-banner">
+        <div class="app-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.14-.52.38.38 0 0 0-.52.14l-1.87 3.23A11.4 11.4 0 0 0 12 8.1c-1.74 0-3.4.37-4.9 1.05L5.22 5.92a.38.38 0 0 0-.52-.14.38.38 0 0 0-.14.52L6.4 9.48A10.2 10.2 0 0 0 1.6 17.4h20.8a10.2 10.2 0 0 0-4.8-7.92zM7.1 14.6a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2zm9.8 0a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z"/></svg>
+        </div>
+        <div class="app-info">
+          <p class="app-title">
+            <span data-i18n="androidTitle">Android-приложение доступно</span>
+            <span class="app-badge" data-i18n="androidBadge">APK</span>
+          </p>
+          <p class="app-text" data-i18n="androidText">Скачайте последний релиз — поиск проектов GitHub прямо со смартфона.</p>
+        </div>
+        <div class="app-action">
+          <a class="button primary" id="android-download"
+            href="https://github.com/notkovvik/GitHub-Search/releases/download/v1/GitHub-Search-universal.apk"
+            download rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            <span data-i18n="androidDownload">Скачать APK</span>
+          </a>
+        </div>
+      </div>
 
       <form class="user-search" id="search-form" role="search" autocomplete="off">
         <div class="row">
@@ -720,6 +787,10 @@ const I18N={
     repoSearchPlaceholder:'Найти проект по названию, языку или теме…',
     tgContact:'Связаться со мной',
     langAria:'Сменить язык',
+    androidTitle:'Android-приложение доступно',
+    androidBadge:'APK · v1',
+    androidText:'Скачайте последний релиз — поиск проектов GitHub прямо со смартфона.',
+    androidDownload:'Скачать APK',
     countOf:(n,total)=>n+' из '+total+' проектов',
     sectionUsers:'Авторы',
     sectionRepos:'Репозитории',
@@ -825,6 +896,10 @@ const I18N={
     repoSearchPlaceholder:'Search by name, language or topic…',
     tgContact:'Contact me',
     langAria:'Switch language',
+    androidTitle:'Android app is available',
+    androidBadge:'APK · v1',
+    androidText:'Download the latest release — search GitHub projects right from your phone.',
+    androidDownload:'Download APK',
     countOf:(n,total)=>n+' of '+total+' projects',
     sectionUsers:'Authors',
     sectionRepos:'Repositories',
@@ -1321,7 +1396,7 @@ function renderFilterBanner(){
   filterBanner.classList.remove('hidden');
 }
 
-/* ---------- REPO CARD (выделено для переиспользования) ---------- */
+/* ---------- REPO CARD ---------- */
 function buildRepoCard(r,{highlight=false,showOwner=false}={}){
   const card=element('article','card');
   if(highlight)card.classList.add('highlight');
@@ -1371,7 +1446,6 @@ function buildRepoCard(r,{highlight=false,showOwner=false}={}){
     actions.append(link(t('siteOpen'),site,true,
       ['M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6','M15 3h6v6','M10 14 21 3']));
   }
-  // внутренняя ссылка на профиль (для результатов)
   actions.append(internalLink(t('repo'),r.owner.login+'/'+r.name,false,
     ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4','M9 18c-4.51 2-5-2-7-2']));
   actions.append(link(t('download'),'https://github.com/'+encodeURIComponent(r.owner.login)+'/'+encodeURIComponent(r.name)+'/archive/refs/heads/'+encodeURIComponent(r.default_branch||'main')+'.zip',false,
@@ -1542,7 +1616,6 @@ function renderResultsState(){
   else summary='';
   resultsSummary.textContent=summary;
 
-  // users
   resultsUsers.replaceChildren();
   if(u){
     resultsUsersWrap.classList.remove('hidden');
@@ -1556,7 +1629,6 @@ function renderResultsState(){
     resultsUsersWrap.classList.add('hidden');
   }
 
-  // repos
   resultsRepos.replaceChildren();
   if(r){
     resultsReposWrap.classList.remove('hidden');
@@ -1570,7 +1642,6 @@ function renderResultsState(){
     resultsReposWrap.classList.add('hidden');
   }
 
-  // пусто
   if(!u&&!r&&!searchState.loadingUsers&&!searchState.loadingRepos){
     resultsStatus.classList.remove('hidden');
     resultsStatus.replaceChildren(
@@ -1610,7 +1681,6 @@ async function loadResults(q){
   const strong=element('span','',q);
   resultsQuery.replaceChildren(document.createTextNode(t('titleQuery','').split(' —')[0]+': '),strong);
 
-  // параллельно
   const usersP=api('/search/users?q='+encodeURIComponent(q)+'&per_page='+searchState.perPage+'&page=1',{useCache:true})
     .then(data=>{
       searchState.users=(data.items||[]);
@@ -1633,7 +1703,6 @@ async function loadResults(q){
 
   await Promise.allSettled([usersP,reposP]);
 
-  // debug
   renderDebug({
     query:q,
     usersCount:searchState.users.length,
@@ -1859,19 +1928,16 @@ searchForm.addEventListener('submit',(e)=>{
   if(!q)return;
   hideSuggest();
 
-  // 1) ссылка / user/repo
   const ref=parseRepoRef(q);
   if(ref){navigate(ref.owner+'/'+ref.repo);return}
 
   q=q.replace(/^@/,'');
 
-  // 2) просто ник — открываем профиль
   if(looksLikeLogin(q)){
     navigate(q);
     return;
   }
 
-  // 3) фраза — идём на страницу результатов поиска
   navigate('q='+encodeURIComponent(q));
 });
 
@@ -1920,7 +1986,6 @@ function onRoute(){
     return;
   }
 
-  // q=... → результаты
   if(raw.startsWith('q=')){
     const q=raw.slice(2);
     userInput.value=q;
@@ -1928,11 +1993,9 @@ function onRoute(){
     return;
   }
 
-  // user/repo → профиль с фильтром
   const m=raw.match(/^([^\/\s]+)\/([^\/\s]+)$/);
   if(m){loadProfile(m[1],{repo:m[2]});return}
 
-  // user → профиль
   loadProfile(raw);
 }
 window.addEventListener('hashchange',onRoute);
