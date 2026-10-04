@@ -1,0 +1,9 @@
+<resources>
+  <color name="colorPrimary">#023c69</color>
+  <color name="colorPrimaryDark">#ffffff</color>
+  <!-- Нужен для drawable/splashscreen.xml. Обычно генерируется плагином
+       expo-splash-screen; здесь его нет, поэтому задаём вручную. -->
+  <color name="splashscreen_background">#0d0d0d</color>
+  <!-- Фон адаптивной иконки: mipmap-anydpi-v26/ic_launcher.xml -->
+  <color name="ic_launcher_background">#0d0d0d</color>
+</resources>

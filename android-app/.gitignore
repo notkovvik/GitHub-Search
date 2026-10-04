@@ -1,0 +1,44 @@
+# Зависимости
+node_modules/
+.npm-cache/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Сборка Android (исходники android/ коммитятся — в них иконки, манифест, app links)
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/.cxx/
+android/local.properties
+*.apk
+*.aab
+*.jsbundle
+
+# iOS
+ios/Pods/
+ios/build/
+ios/.xcode.env.local
+
+# Секреты: релизные ключи и .env в репозиторий не попадают.
+# Исключение — стандартный debug.keystore из шаблона Expo: без него не
+# соберётся ни debug, ни release (release тоже подписывается им локально).
+*.jks
+*.keystore
+!android/app/debug.keystore
+.env
+.env.local
+.env.*.local
+
+# Редакторы / ОС
+.idea/
+.vscode/
+.DS_Store
+
+# Логи и кэш
+*.log
+*.hprof
+*.tsbuildinfo

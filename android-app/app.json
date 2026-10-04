@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "GitHub Search",
+    "slug": "github-explorer",
+    "scheme": "ghexplorer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "dev.notkovvik.ghexplorer",
+      "versionCode": 1,
+      "minSdkVersion": 33,
+      "targetSdkVersion": 34,
+      "adaptiveIcon": {
+        "backgroundColor": "#0d0d0d"
+      },
+      "edgeToEdgeEnabled": true,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "github.com",
+              "pathPattern": "/.*/.*"
+            },
+            {
+              "scheme": "https",
+              "host": "www.github.com",
+              "pathPattern": "/.*/.*"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        },
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "ghexplorer"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "8e8bba26-eb00-4d33-9a6f-5352b2dfc4cc"
+      }
+    }
+  }
+}
